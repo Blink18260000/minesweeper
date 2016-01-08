@@ -1,11 +1,9 @@
 class Board
-  attr_reader :bombs
 
   def initialize(size = nil, bombs = nil) #size is of the format: [dim1, dim2]
     size = [9, 9] unless size
     @size = size
     bombs = 15 unless bombs
-    @bombs
     @grid = Array.new(size[0]) { Array.new(size[1]) }
   end
 
