@@ -1,3 +1,5 @@
+require "./tile.rb"
+
 class Board
 
   def initialize(size = nil, bombs = nil) #size is of the format: [dim1, dim2]

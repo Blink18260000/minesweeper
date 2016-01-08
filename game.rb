@@ -1,3 +1,6 @@
+require "./board.rb"
+require "./player.rb"
+
 class Game
   def initialize(player)
     @player = player
