@@ -14,8 +14,15 @@ class Game
 
   def play
     # @player.display(@board.board_state, @size[0])
-    while @board.tiles_remaining
+    while @board.tiles_remaining?
       @player.display(@board.board_state, @size[0])
+      print "\n"
+      loc = @player.get_input
+      if @board.reveal(loc)
+        puts "you lose"
+        break
+      end
+
 
     end
   end

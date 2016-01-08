@@ -30,11 +30,12 @@ attr_accessor :neighbors
     if neighbor_bombs == 0
       @representation = "_"
       @neighbors.each do |some_tile|
-        some_tile.reveal
+        some_tile.reveal unless some_tile.revealed
       end
     else
       @representation = neighbor_bombs.to_s
     end
+    false
   end
 
   def neighbor_bomb_count

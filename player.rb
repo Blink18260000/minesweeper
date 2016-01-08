@@ -12,7 +12,13 @@ class Player
   end
 
   def get_input
-
+    puts "Which spot should be revealed?"
+    location = gets.chomp
+    while location.size == 0
+      location = gets.chomp
+    end
+    ind0, ind1 = location.split(/, */)
+    [ind0.to_i, ind1.to_i]
   end
 
   def get_size

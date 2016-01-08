@@ -56,8 +56,8 @@ class Board
     spots
   end
 
-  # def [](loc)
-  #   @grid[loc[0], loc[1]].reveal
-  # end
+  def reveal(loc)
+     @grid[loc[0]][loc[1]].reveal
+  end
 
 end
