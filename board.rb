@@ -2,10 +2,8 @@ require "./tile.rb"
 
 class Board
 
-  def initialize(size = nil, bombs = nil) #size is of the format: [dim1, dim2]
-    size = [9, 9] unless size
+  def initialize(size, bombs) #size is of the format: [dim1, dim2]
     @size = size
-    bombs = 15 unless bombs
     @grid = Array.new(size[0]) { Array.new(size[1]) }
   end
 
@@ -13,13 +11,14 @@ class Board
     diffs = [[-1, -1], [-1, 0], [-1, 1], [0, -1]]
     @grid.each_with_index do |row, i|
       row.each_index do |j|
-        is_bomb = prng.rand(1.0) < bomb_prob(bombs, i, j)
+        is_bomb = Random.new.rand(1.0) < bomb_prob(bombs, i, j)
         if is_bomb
           bombs -= 1
         end
         current_tile = Tile.new(is_bomb)
         diffs.each do |curr_diff|
-          if (i + curr_diff[0] >= 0) && (j + curr_diff[1] >= 0)
+          if (i + curr_diff[0] >= 0) && (j + curr_diff[1] >= 0) && (j + curr_diff[1] < @size[1])
+            #puts "I: #{i}\nJ: #{j}"
             @grid[i + curr_diff[0]][j + curr_diff[1]].add_neighbor(current_tile)
           end
         end
@@ -57,8 +56,8 @@ class Board
     spots
   end
 
-  def [](loc)
-    @grid[loc[0], loc[1]].reveal
-  end
+  # def [](loc)
+  #   @grid[loc[0], loc[1]].reveal
+  # end
 
 end
