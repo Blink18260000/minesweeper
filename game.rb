@@ -17,10 +17,14 @@ class Game
     while @board.tiles_remaining?
       @player.display(@board.board_state, @size[0])
       print "\n"
-      loc = @player.get_input
-      if @board.reveal(loc)
-        puts "you lose"
-        break
+      input = @player.get_input
+      if input.size==3
+        @board.flag(input[0..1])
+      else
+        if @board.reveal(input)
+          puts "you lose"
+          break
+        end
       end
 
 
