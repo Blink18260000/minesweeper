@@ -38,6 +38,12 @@ attr_accessor :neighbors
     false
   end
 
+  def flag
+    @flagged = true
+    @representation = "F"
+  end
+  
+
   def neighbor_bomb_count
     count = 0
     @neighbors.each do |some_tile|
