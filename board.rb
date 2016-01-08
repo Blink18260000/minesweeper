@@ -1,8 +1,11 @@
 class Board
+  attr_reader :bombs
+
   def initialize(size = nil, bombs = nil) #size is of the format: [dim1, dim2]
     size = [9, 9] unless size
     @size = size
     bombs = 15 unless bombs
+    @bombs
     @grid = Array.new(size[0]) { Array.new(size[1]) }
   end
 
@@ -32,4 +35,30 @@ class Board
     remaining_spots = total_squares - populated_spots
     return bombs.to_f / remaining_spots
   end
+
+  def tiles_remaining?
+    @grid.each do |row|
+      row.each do |tile|
+        if !(tile.revealed) && !(tile.bombed)
+          return true
+        end
+      end
+    end
+    false
+  end
+
+  def board_state
+    spots = []
+    @grid.each do |row|
+      row.each do |tile|
+        spots << tile.representation
+      end
+    end
+    spots
+  end
+
+  def [](loc)
+    @grid[loc[0], loc[1]].reveal
+  end
+
 end
