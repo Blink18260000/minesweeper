@@ -39,10 +39,10 @@ attr_accessor :neighbors
   end
 
   def flag
-    @flagged = true
-    @representation = "F"
+    @flagged = !@flagged
+    @representation == "F" ? @representation = "*" : @representation = "F"
   end
-  
+
 
   def neighbor_bomb_count
     count = 0

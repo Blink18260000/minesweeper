@@ -16,19 +16,20 @@ class Game
     # @player.display(@board.board_state, @size[0])
     while @board.tiles_remaining?
       @player.display(@board.board_state, @size[0])
-      print "\n"
       input = @player.get_input
       if input.size==3
         @board.flag(input[0..1])
       else
         if @board.reveal(input)
-          puts "you lose"
-          break
+          puts "You lost!"
+          @board.over
+          @player.display(@board.board_state, @size[0])
+          return
         end
       end
-
-
     end
+    puts "You won!"
+    @player.display(@board.board_state, @size[0])
   end
 end
 

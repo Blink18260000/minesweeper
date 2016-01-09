@@ -9,6 +9,7 @@ class Player
       print "\n" if i>0 && i % width ==0
       print spot
     end
+    print "\n"
   end
 
   def get_input
@@ -32,7 +33,7 @@ class Player
     if size_string.size == 0
       return [9, 9]
     end
-    size0, size1 = size_string.split(/, */)
+    size0, size1 = size_string.split(/ *,* +/)
     size = [size0.to_i, size1.to_i]
   end
 

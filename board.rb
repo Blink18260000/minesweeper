@@ -60,4 +60,15 @@ class Board
      @grid[loc[0]][loc[1]].reveal
   end
 
+  def flag(loc)
+    @grid[loc[0]][loc[1]].flag
+  end
+
+  def over
+    @grid.each do |row|
+      row.each do |tile|
+        tile.reveal if tile.bombed
+      end
+    end
+  end
 end
